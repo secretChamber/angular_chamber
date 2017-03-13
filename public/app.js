@@ -7,21 +7,27 @@ app.controller("inputController", function ($scope) {
   $scope.output = '';
 
   $scope.submitData = function (input) {
-  	//AppService.post()...
-  	
-  	console.log('button workin?')
-
+  	//AppService.post()
   	$scope.input = '';
   	$scope.output = input;
   };
+  $scope.getList = function () {
+  	//AppService.get();
+  };
 });
 
-
-// app.service("AppService", function () {
-// 	this.get('/api/issue', function () {
-
-// 	});
-// 	this.post('/api/issue', function () {
-
-// 	});
-// });
+app.service('AppService', function ($http) {
+  this.getData = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/cats'
+    });
+  };
+  this.postData = function (catData) {    
+    return $http ({
+      method: 'POST',
+      url: '/api/cats',
+      data: catData
+    });
+  };
+});
