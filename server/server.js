@@ -1,13 +1,12 @@
 var express = require('express');
-var bodyParser = require('bodyParser');
-var mysql = require('mysql');
+var bodyParser = require('body-parser');
+// var mysql = require('mysql');
 var path = require('path');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 
