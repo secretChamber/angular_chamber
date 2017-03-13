@@ -1,0 +1,24 @@
+{
+  "name": "angular_chamber",
+  "version": "1.0.0",
+  "description": "making it in angular for personal testing purposes (i have a better understanding of anular at the moment)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/secretChamber/angular_chamber.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/secretChamber/angular_chamber/issues"
+  },
+  "homepage": "https://github.com/secretChamber/angular_chamber#readme",
+  "dependencies": {
+    "bookshelf": "^0.10.3",
+    "knex": "^0.12.7",
+    "mysql": "^2.13.0"
+  }
+}

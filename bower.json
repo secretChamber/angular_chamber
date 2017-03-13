@@ -1,0 +1,20 @@
+{
+  "name": "angular_chamber",
+  "description": "making it in angular for personal testing purposes (i have a better understanding of anular at the moment)",
+  "main": "index.js",
+  "authors": [
+    "Jaime Pericas <jaime.pericas.saez@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/secretChamber/angular_chamber",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3"
+  }
+}
