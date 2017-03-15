@@ -1,0 +1,11 @@
+body {
+	background-color: lightgrey;
+}
+
+button {
+	margin-bottom: 10px; 
+}
+
+.last {
+	margin-bottom: 30px;
+}

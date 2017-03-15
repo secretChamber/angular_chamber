@@ -3,7 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
 
@@ -23,8 +23,8 @@ var connection = mysql.createConnection({
 connection.connect();
 
 
-// =======> POSTS SHOULD WORK <=========
-app.post('/postIssue', function(req, res) {
+// =======> POSTS WORK <=========
+app.post('/Issue', function(req, res) {
  let issue = req.body;
  let row = {
     user_id: 0, 
@@ -39,11 +39,11 @@ app.post('/postIssue', function(req, res) {
   });
 });
 
-app.post('/postUser', function(req, res) {
+app.post('/User', function(req, res) {
   let user = req.body;
   let row = {
-    username: 'test_name', 
-    password: 'test_password'
+    username: user.username, 
+    password: user.password
  };
   connection.query('INSERT INTO users SET ?', row, function (err, result) {
    if (err) console.log(err);
@@ -51,11 +51,11 @@ app.post('/postUser', function(req, res) {
   });
 });
 
-app.post('/postVote', function(req, res) {
+app.post('/Vote', function(req, res) {
  let vote = req.body;
  let row = {
-  rep_issue_id: vote.rep_issue_id,
-  user_id: vote.user_id
+  rep_issue_id: vote.issueID,
+  user_id: vote.userID
  };
   connection.query('INSERT INTO votes SET ?', row, function (err, result) {
    if (err) console.log(err);
@@ -65,11 +65,11 @@ app.post('/postVote', function(req, res) {
 
 // =======> GETS under development <=========
 app.get('/allIssues', function(req, res) {
- connection.query('SELECT * FROM reported_issues', function(err, result) {
-   if (err) console.log(err);
-   console.log(result);
- });
-    res.send(data);
+  connection.query('SELECT * FROM reported_issues', function(err, result) {
+    if (err) console.log(err);
+    console.log(result);
+    res.send(result);
+  });
 });
 
 // ---> i dont think this is MVP <---
@@ -81,13 +81,12 @@ app.get('/allIssues', function(req, res) {
 //     res.send(data);
 // });
 
-app.get('/getVoteNumber', (req,res) => {
- let id = req.body;
- connection.query('SELECT COUNT (*) FROM votes WEHRE rep_issue_id = ' + id.rep_issue_id, function(err, result) {
-   if (err) console.log(err);
-   console.log(result);
- });
-    res.send(data);
+app.get('/allVotes', (req,res) => {
+  connection.query('SELECT COUNT (*) FROM votes WHERE rep_issue_id = 0', function(err, result) {
+    // if (err) console.log(err);
+    console.log(result);
+    res.send(result);
+  });
 });
 // =======> end of GETS <=======
 

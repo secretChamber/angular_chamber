@@ -2,6 +2,7 @@
 <html ng-app="app">
 <head>
 	<title>angular_naberle</title>
+	<link href="styles.css" rel="stylesheet">
 	<script src="./lib/angular/angular.js"></script>
 	<script src="app.js"></script>
 </head>
@@ -10,6 +11,7 @@
 	<div ng-controller="Controller">
 
 	    <!-- input issue data -->
+	  <h3>Input Issue</h3>
 		<strong>TYPE:</strong><br>
 		<input ng-model="type" type="text"><br>
 		<strong>LAT:</strong><br>
@@ -20,23 +22,28 @@
 		<input ng-model="status" type="text"><br>
 		<strong>REPORTER:</strong><br>
 		<input ng-model="reporter" type="text"><br>
-		<button ng-click="submitIssue(type, lat, lng, status, reporter)">submit</button>
+		<button ng-click="submitIssue(type, lat, lng, status, reporter)">submit</button><br>
 
 		<!-- input user data -->
+		<h3>Create User</h3>
 		<strong>USERNAME:</strong><br>
 		<input ng-model="name" type="text"><br>
 		<strong>PASSWORD:</strong><br>
 		<input ng-model="pw" type="text"><br>
-		<button ng-click="submitUser(name, pw)">submit</button>
+		<button ng-click="submitUser(name, pw)">submit</button><br>
 
 		<!-- input a vote -->
-		<strong>USERNAME:</strong><br>
-		<input ng-model="name" type="text"><br>
-		<strong>PASSWORD:</strong><br>
-		<input ng-model="pw" type="text"><br>
-		<button ng-click="submitVote(issueID, userID)">submit</button>
+		<h3>Vote Action</h3>
+		<strong>issueID:</strong><br>
+		<input ng-model="issueID" type="text"><br>
+		<strong>userID:</strong><br>
+		<input ng-model="userID" type="text"><br>
+		<button ng-click="submitVote(issueID, userID)" class="last">submit</button><br>
 
-		<h1 ng-model="output">{{ output }}</h1>
+		<button ng-click="fetchIssues()">get issues</button><br>
+		<button ng-click="fetchVotes()">get votes</button><br>
+
+		<h2 ng-model="output">{{ output }}</h2>
 
 	</div>
 

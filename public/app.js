@@ -2,9 +2,9 @@ var app = angular.module("app", []);
 
 app.controller("Controller", function ($scope, AppService) {
 
-  $scope.output = '$scope output online';
+  $scope.output = 'controller output online';
 
-// =======> submitions SHOULD WORK <=========
+// =======> Submitions WORK <=========
   $scope.submitIssue = function (type, lat, lng, status, reporter) {
     let row = {
       issue: type,
@@ -15,7 +15,7 @@ app.controller("Controller", function ($scope, AppService) {
       status: status,
       reporter: reporter
     };
-    AppService.postData(row);
+    AppService.postIssue(row);
   };
   $scope.submitUser = function (name, pw) {
     let row = {
@@ -26,21 +26,21 @@ app.controller("Controller", function ($scope, AppService) {
   };
   $scope.submitVote = function (issueID, userID) {
     let row = {
-      rep_issue_id: issueID,
-      user_id: userID
+      issueID: issueID,
+      userID: userID
     };
     AppService.postVote(row);
   };
 
-// =======> fetchers under development <=========
+// =======> controller fetchers under development <=========
   $scope.fetchIssues = function () {
-  	AppService.get().then(function(data) {
+  	AppService.getIssues().then(function (data) {
       $scope.output = data.data;
     });
   };
 
-  $scope.fetchVoteNumber = function () {
-    AppService.get().then(function(data) {
+  $scope.fetchVotes = function () {
+    AppService.getVoteNumber().then(function (data) {
       $scope.output = data.data;
     });    
   }
@@ -51,7 +51,7 @@ app.controller("Controller", function ($scope, AppService) {
 
 app.service('AppService', function ($http) {
 
-// =======> GETS under development <=========
+// =======> service GETS under development <=========
   this.getIssues = function () {
     return $http({
       method: 'GET',
@@ -59,18 +59,10 @@ app.service('AppService', function ($http) {
     });
   };
 
-  // ----> getUsers doesn't seem MVP to me <----
-  // this.getUsers = function () {
-  //   return $http({
-  //     method: 'GET',
-  //     url: '/allUsers'
-  //   });
-  // };
-
   this.getVoteNumber = function () {
     return $http({
       method: 'GET',
-      url: '/getVoteNumber'
+      url: '/allVotes'
     });
   };
 
@@ -80,7 +72,7 @@ app.service('AppService', function ($http) {
   console.log('in appService post ', issueData) 
     return $http ({
       method: 'POST',
-      url: '/postIssue',
+      url: '/Issue',
       data: issueData
     });
   };
@@ -88,7 +80,7 @@ app.service('AppService', function ($http) {
   console.log('in appService post ', userData) 
     return $http ({
       method: 'POST',
-      url: '/postUser',
+      url: '/User',
       data: userData
     });
   };
@@ -96,8 +88,11 @@ app.service('AppService', function ($http) {
   console.log('in appService post ', voteData) 
     return $http ({
       method: 'POST',
-      url: '/postVote',
+      url: '/Vote',
       data: voteData
     });
   };
 });
+
+
+
