@@ -19,6 +19,11 @@ CREATE TABLE users (
   user_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
 
+
+-- NOTE: we only want to keep track of the votes 
+-- and their numbers with the same table:
+-- it is custom and safer to only retain one 
+-- 'source' of truth for any given data point.
 CREATE TABLE votes (
   rep_issue_id INT UNSIGNED NOT NULL,
   user_id INT UNSIGNED NOT NULL,

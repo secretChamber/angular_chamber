@@ -7,14 +7,36 @@
 </head>
 <body>
 
-  <h1>html online</h1>
+	<div ng-controller="Controller">
 
-	<div ng-controller="inputController">
-		
-		<input ng-model="input" type="text">
-		<button ng-click="submitData(input)">submit</button>
+	    <!-- input issue data -->
+		<strong>TYPE:</strong><br>
+		<input ng-model="type" type="text"><br>
+		<strong>LAT:</strong><br>
+		<input ng-model="lat" type="text"><br>
+		<strong>LNG:</strong><br>
+		<input ng-model="lng" type="text"><br>
+	    <strong>STATUS:</strong><br>
+		<input ng-model="status" type="text"><br>
+		<strong>REPORTER:</strong><br>
+		<input ng-model="reporter" type="text"><br>
+		<button ng-click="submitIssue(type, lat, lng, status, reporter)">submit</button>
 
-		<div ng-model="output">{{ output }}</div>
+		<!-- input user data -->
+		<strong>USERNAME:</strong><br>
+		<input ng-model="name" type="text"><br>
+		<strong>PASSWORD:</strong><br>
+		<input ng-model="pw" type="text"><br>
+		<button ng-click="submitUser(name, pw)">submit</button>
+
+		<!-- input a vote -->
+		<strong>USERNAME:</strong><br>
+		<input ng-model="name" type="text"><br>
+		<strong>PASSWORD:</strong><br>
+		<input ng-model="pw" type="text"><br>
+		<button ng-click="submitVote(issueID, userID)">submit</button>
+
+		<h1 ng-model="output">{{ output }}</h1>
 
 	</div>
 
