@@ -64,7 +64,7 @@ app.post('/Vote', function(req, res) {
 });
 
 // =======> GETS under development <=========
-app.get('/allIssues', function(req, res) {
+app.get('/allIssues', function (req, res) {
   connection.query('SELECT * FROM reported_issues', function(err, result) {
     if (err) console.log(err);
     console.log(result);
@@ -72,25 +72,17 @@ app.get('/allIssues', function(req, res) {
   });
 });
 
-// ---> i dont think this is MVP <---
-// app.get('/allUsers', (req,res) => {
-//  connection.query('SELECT username FROM users', function(err, result) {
-//    if (err) console.log(err);
-//    console.log(result);
-//  });
-//     res.send(data);
-// });
-
-app.get('/allVotes', (req,res) => {
-  connection.query('SELECT COUNT (*) FROM votes WHERE rep_issue_id = 0', function(err, result) {
-    // if (err) console.log(err);
+app.get('/numOfVotes', function (req, res) {
+  let id = req.query.id;
+  connection.query('SELECT COUNT (*) FROM votes WHERE rep_issue_id = ' + id, function(err, result) {
+    if (err) console.log(err);
     console.log(result);
     res.send(result);
   });
 });
 // =======> end of GETS <=======
 
-app.listen(PORT, () => {
+app.listen(PORT, function () {
   console.log('App is listening on PORT:', PORT);
 });
 

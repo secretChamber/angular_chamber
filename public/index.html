@@ -41,7 +41,10 @@
 		<button ng-click="submitVote(issueID, userID)" class="last">submit</button><br>
 
 		<button ng-click="fetchIssues()">get issues</button><br>
-		<button ng-click="fetchVotes()">get votes</button><br>
+
+		<strong>issueIDinVote:</strong><br>
+		<input ng-model="issueIDinVote" type="text"><br>
+		<button ng-click="fetchVotes(issueIDinVote)">get votes</button><br>
 
 		<h2 ng-model="output">{{ output }}</h2>
 

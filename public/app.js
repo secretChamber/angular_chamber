@@ -39,8 +39,11 @@ app.controller("Controller", function ($scope, AppService) {
     });
   };
 
-  $scope.fetchVotes = function () {
-    AppService.getVoteNumber().then(function (data) {
+  $scope.fetchVotes = function (issueIDinVote) {
+    let data = {
+      id: issueIDinVote
+    };
+    AppService.getVoteNumber(data).then(function (data) {
       $scope.output = data.data;
     });    
   }
@@ -59,10 +62,11 @@ app.service('AppService', function ($http) {
     });
   };
 
-  this.getVoteNumber = function () {
+  this.getVoteNumber = function (data) {
     return $http({
       method: 'GET',
-      url: '/allVotes'
+      url: '/numOfVotes',
+      params: data
     });
   };
 
