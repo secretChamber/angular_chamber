@@ -4,6 +4,8 @@ CREATE DATABASE naberle;
 
 USE naberle;
 
+-- default status to reported
+
 CREATE TABLE reported_issues (
   user_id INT UNSIGNED NOT NULL,
   lat VARCHAR(100) NOT NULL,
