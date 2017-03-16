@@ -1,10 +1,7 @@
 var app = angular.module("app", []);
 
 app.controller("Controller", function ($scope, AppService) {
-
   $scope.output = 'controller output online';
-
-// =======> Submitions WORK <=========
   $scope.submitIssue = function (type, lat, lng, status, reporter) {
     let row = {
       issue: type,
@@ -31,14 +28,11 @@ app.controller("Controller", function ($scope, AppService) {
     };
     AppService.postVote(row);
   };
-
-// =======> controller fetchers under development <=========
   $scope.fetchIssues = function () {
   	AppService.getIssues().then(function (data) {
       $scope.output = data.data;
     });
   };
-
   $scope.fetchVotes = function (issueIDinVote) {
     let data = {
       id: issueIDinVote
@@ -47,36 +41,28 @@ app.controller("Controller", function ($scope, AppService) {
       $scope.output = data.data;
     });    
   }
-
 });
 
 
-
 app.service('AppService', function ($http) {
-
-// =======> service GETS under development <=========
   this.getIssues = function () {
     return $http({
       method: 'GET',
-      url: '/allIssues'
+      url: '/issue'
     });
   };
-
   this.getVoteNumber = function (data) {
     return $http({
       method: 'GET',
-      url: '/numOfVotes',
+      url: '/vote/count',
       params: data
     });
   };
-
-
-// =======> POSTS SHOULD WORK <=========
   this.postIssue = function (issueData) {
   console.log('in appService post ', issueData) 
     return $http ({
       method: 'POST',
-      url: '/Issue',
+      url: '/issue',
       data: issueData
     });
   };
@@ -84,7 +70,7 @@ app.service('AppService', function ($http) {
   console.log('in appService post ', userData) 
     return $http ({
       method: 'POST',
-      url: '/User',
+      url: '/user',
       data: userData
     });
   };
@@ -92,11 +78,8 @@ app.service('AppService', function ($http) {
   console.log('in appService post ', voteData) 
     return $http ({
       method: 'POST',
-      url: '/Vote',
+      url: '/vote',
       data: voteData
     });
   };
 });
-
-
-

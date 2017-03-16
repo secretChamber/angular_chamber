@@ -9,7 +9,7 @@ router.post('/', function(req, res) {
     lat: issue.location.lat,
     lng: issue.location.lng,
     type: issue.issue,
-    status: issue.status
+    status: 'Reported'
  };
   connection.query('INSERT INTO reported_issues SET ?', row, function (err, result) {
    if (err) console.log(err);
